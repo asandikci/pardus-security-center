@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="com.asandikci.pardus-security-center" path="/com/asandikci/pardus-security-center/">
+      <key name="first-run" type="b">
+          <default>true</default>
+          <summary>First Run</summary>
+          <description>Did application run before or is this first run?</description>
+      </key>
+  </schema>
+</schemalist>
