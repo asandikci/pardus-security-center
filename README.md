@@ -12,7 +12,10 @@
   - [ ] ClamAV 
     - [ ] Complete scan
     - [ ] Realtime scan
-    - [ ] Custom scan (disk/folder)
+    - [ ] Custom scan (file/folder)
+<!-- ANCHOR - FOR FUTURE
+    - [ ] Custom scan (disk)
+--> 
   - [ ] VirusTotal (over API - for other suspicious files)
 - [ ] Link checker <!-- (like URLChecker in Android) -->
 - [ ] System certificate manager

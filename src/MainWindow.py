@@ -33,6 +33,7 @@ class MainWindow(Ptk.ApplicationWindow):
         )
         self.window.set_application(app)
         self.schema = "com.asandikci.pardus-security-center"
+        self.app = app
 
         self.load_data()
 
@@ -82,7 +83,7 @@ class MainWindow(Ptk.ApplicationWindow):
             Other,
         )
 
-        self.stack.add_titled(MalwareScan.Menu(), "malware-scan", _("Malware Scan"))
+        self.stack.add_titled(MalwareScan.Menu(app=self.app), "malware-scan", _("Malware Scan"))
         self.stack.add_titled(Firewall.Menu(), "firewall", _("Firewall"))
         self.stack.add_titled(Other.Menu(), "other", _("Other"))
 
