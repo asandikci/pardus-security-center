@@ -35,6 +35,8 @@ class MainWindow(Ptk.ApplicationWindow):
         self.schema = "com.asandikci.pardus-security-center"
         self.app = app
 
+        self.update_terminal(cmd="", stdout="No Logs Yet")
+
         self.load_data()
 
         self.setup_finished()  # TEMPORARY DEVELOPMENT
@@ -61,9 +63,13 @@ class MainWindow(Ptk.ApplicationWindow):
         self.about_button = Ptk.Button(icon="dialog-information-symbolic")
         self.about_button.connect("clicked", self._show_about)
 
+        self.log_button = Ptk.Button(icon="utilities-terminal-symbolic")
+        self.log_button.connect("clicked", self.show_terminal)
+
         if self.check_setup_complete():
             print("SETUP COMPLETED, LOADING HEADER BAR")
             self.headerbar.pack_end(self.about_button)
+            self.headerbar.pack_end(self.log_button)
             self.setup_ui_menu(self.headerbar)
         else:
             print("SETUP NOT COMPLETED YET")
@@ -83,7 +89,9 @@ class MainWindow(Ptk.ApplicationWindow):
             Other,
         )
 
-        self.stack.add_titled(MalwareScan.Menu(app=self.app), "malware-scan", _("Malware Scan"))
+        self.stack.add_titled(
+            MalwareScan.Menu(app=self.app), "malware-scan", _("Malware Scan")
+        )
         self.stack.add_titled(Firewall.Menu(), "firewall", _("Firewall"))
         self.stack.add_titled(Other.Menu(), "other", _("Other"))
 
@@ -118,3 +126,49 @@ class MainWindow(Ptk.ApplicationWindow):
             modal=True,
         )
         dialog.show()
+
+    def show_terminal(self, button):
+        self.terminal_dialog.show()
+        self.terminal_dialog.connect("response", self._handle_clicked)
+
+    def update_terminal(self, **kwargs):
+        log = kwargs["stdout"]
+        cmd = kwargs["cmd"]
+        scrolled_window = Ptk.ScrolledWindow()
+        if "stderr" in kwargs:
+            err = kwargs["stderr"]
+            box = Ptk.Box(orientation="vertical")
+            box.append(Ptk.Label(label=cmd))
+            scrolled_window.set_child(Gtk.Separator(orientation="horizontal"))
+            box.append(Ptk.Label(label=log))
+            scrolled_window.set_child(Gtk.Separator(orientation="horizontal"))
+            errbox = Ptk.Box(orientation="vertical")
+            errbox.append(Ptk.Label(label="ERRORS:", css=["title-2"]))
+            errbox.append(Ptk.Label(label=err))
+            box.append(errbox)
+            scrolled_window.set_child(box)
+        else:
+            scrolled_window.set_child(Ptk.Label(label=cmd))
+            scrolled_window.set_child(Gtk.Separator(orientation="horizontal"))
+            scrolled_window.set_child(Ptk.Label(label=log))
+
+        term = Gtk.Dialog(
+            titlebar=Adw.HeaderBar(),
+            title="Terminal Logs",
+            child=scrolled_window,
+            default_height=800,
+            default_width=600,
+        )
+
+        # FIXME "A window is shown after it has been destroyed. This will leave the window in an inconsistent state." error when second widget open
+        # Workaround: _handle_clicked function
+        # Workaround2: self.terminal_dialog.destroy()
+        # Workaround3: MainWindow.terminal_dialog = term (instead of self.terminal_dialog = term) (because function could be called from other classes)
+        # REVIEW is Workaround 3 actually a solution, are there better data pipe/dialog solutions to use cross-files ?
+
+        MainWindow.terminal_dialog = term
+        self.terminal_dialog.destroy()
+        return term
+
+    def _handle_clicked(self, *args):
+        self.terminal_dialog.hide()
