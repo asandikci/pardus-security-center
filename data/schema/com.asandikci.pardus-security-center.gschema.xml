@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
   <schema id="com.asandikci.pardus-security-center" path="/com/asandikci/pardus-security-center/">
-      <key name="first-run" type="b">
-          <default>true</default>
-          <summary>First Run</summary>
-          <description>Did application run before or is this first run?</description>
+      <key name="setup-completed" type="b">
+          <default>false</default>
+          <summary>Setup Completed</summary>
+          <description>Did application set up necessary packages/configurations (like clamav, ufw etc.) ?</description>
       </key>
   </schema>
 </schemalist>

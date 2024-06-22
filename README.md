@@ -56,8 +56,7 @@
 
 ### Tech Stack
 - Programming Language: **Python**
-- Widget Toolkit: **PTK 4** (GTK4 Wrapper)
-- UI Design: **Cambalache**
+- Widget Toolkit: **PTK 4** (GTK4 Wrapper) and **Adwaita**
 <!-- - Other Development Tools: VSCodium, GTranslator -->
 
 
