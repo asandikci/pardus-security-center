@@ -64,7 +64,7 @@
 
 
 ### Dependencies
-`sudo apt install libpardus libgtk-4-dev libadwaita-1-dev python3-gi python3`
+`sudo apt install clamav libpardus libgtk-4-dev libadwaita-1-dev python3-gi python3`
 <!-- TODO Dependencies should be updated?! -->
 
 also do not forget to add schema to your gsettings while developing (see [schema.sh](https://git.aliberksandikci.com.tr/asandikci/common-dev/src/branch/main/schema.sh) file)
