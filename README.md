@@ -67,7 +67,7 @@
 `sudo apt install clamav libpardus libgtk-4-dev libadwaita-1-dev python3-gi python3`
 <!-- TODO Dependencies should be updated?! -->
 
-also do not forget to add schema to your gsettings while developing (see [schema.sh](https://git.aliberksandikci.com.tr/asandikci/common-dev/src/branch/main/schema.sh) file)
+also do not forget to add schema to your gsettings while developing (clone [this](https://git.aliberksandikci.com.tr/asandikci/common-dev) repo and run/source [schema.sh](https://git.aliberksandikci.com.tr/asandikci/common-dev/src/branch/main/schema.sh) file)
 
 ### Screenshots -->
 ![Malware Scan UI](screenshots/malware_scan.png)
