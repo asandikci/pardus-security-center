@@ -8,11 +8,11 @@
 <!-- ANCHOR - FOR FUTURE
   - [ ] iptables / nftables
 -->
-- [ ] Malware checker
+- [X] Malware checker
   - [ ] ClamAV 
     - [ ] Complete scan
     - [ ] Realtime scan
-    - [ ] Custom scan (file/folder)
+    - [X] Custom scan (file/folder)
 <!-- ANCHOR - FOR FUTURE
     - [ ] Custom scan (disk)
 --> 
@@ -59,7 +59,7 @@
 
 ### Tech Stack
 - Programming Language: **Python**
-- Widget Toolkit: **PTK 4** (GTK4 Wrapper) and **Adwaita**
+- Widget Toolkit: **PTK**/**GTK 4** and **Adwaita**
 <!-- - Other Development Tools: VSCodium, GTranslator -->
 
 
@@ -67,7 +67,10 @@
 `sudo apt install libpardus libgtk-4-dev libadwaita-1-dev python3-gi python3`
 <!-- TODO Dependencies should be updated?! -->
 
-<!-- ### Screenshots -->
+also do not forget to add schema to your gsettings while developing (see [schema.sh](https://git.aliberksandikci.com.tr/asandikci/common-dev/src/branch/main/schema.sh) file)
+
+### Screenshots -->
+![Malware Scan UI](screenshots/malware_scan.png)
 
 ### Other
 <details><summary>setting up NixOS development environment</summary>
