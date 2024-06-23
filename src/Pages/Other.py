@@ -9,7 +9,4 @@ class Menu(Ptk.ScrolledWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
-        self.text_view = Gtk.TextView(
-            monospace=True, left_margin=5, right_margin=5, top_margin=5
-        )
-        self.set_child(self.text_view)
+        self.set_child(Ptk.Label(label="Not Implemented Yet"))
